@@ -4,15 +4,13 @@ Very lightweight package manager for C++ to be used with CMake.
 
 ## What is it?
 
-1. `main.cpp`: very simple application that uses the `fmt` library
-   to write an `std::vector` to standard output.
-1. `CMakeLists.txt`: CMake file that builds the applications, it
-   downloads CPM if necessary, and downloads and install the
-   dependencies defined in it.
+1. `fmt`: very simple example that depends on the `fmt` library
+   that implements Python f-string like string formatting.
+
 
 ## How to use?
 
-To build the applications, no special action is required:
+To build projects that use CPM, no special action is required:
 ```bash
 $ cmake  -B build/  -S .
 $ cmake  --build build/
