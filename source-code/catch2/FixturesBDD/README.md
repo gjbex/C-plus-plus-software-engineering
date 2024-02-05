@@ -7,4 +7,4 @@ fixtures for tests with Catch2.
 
   1. `stack_test.cpp`: code that tests the sum and product of
     stack elements, where the stack is a test case fixture.
-  1. `Makefile`: make file to build the applications.
+  1. `CMakeLists.txt`: CMake file to build the applications.
