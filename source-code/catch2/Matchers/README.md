@@ -5,5 +5,6 @@ illustrations.
 
 ## What is it?
 
-  1. `ip_address.cpp`: the function under test generates random IP4 addresses
-    as a string.  The test case matches those against a regular expression.
+1. `ip_address.cpp`: the function under test generates random IP4 addresses
+   as a string.  The test case matches those against a regular expression.
+1. `CMakeLists.txt`: CMake file to build and run the tests.
