@@ -8,6 +8,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Catch2 REQUIRED)
 
+enable_testing()
+
 add_executable(stack_test.exe
     stack_test.cpp)
-target_link_libraries(stack_test Catch2::Catch2)
+target_link_libraries(stack_test.exe Catch2::Catch2)
+
+add_test(NAME stack_test
+    COMMAND stack_test.exe)
