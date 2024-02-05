@@ -7,15 +7,19 @@ Simple example of using Catch2 for Behavior Driven Development (BDD).
 1. `test_fac.cpp`: Catch2 tests for the factorial function.
 1. `test_main.cpp`: main function to drive the tests.
 1. `fac_main.cpp`: main function for application.
-1. `Makefile`: make file to build the test appliation.
+1. `CMakeLists.txt`: CMake file to build the test appliation.
 
 ## How to use?
 To build the application:
 ```bash
-$ make
+$ cmake  -B build/  -S .
+$ cmake  --build build/
 ```
 
-To build and run the tests:
+To run the tests:
 ```bash
-$ make checks
+$ cmake  --build build/  --target test
 ```
+or
+```bash
+$ ctest  --test-dir build/
