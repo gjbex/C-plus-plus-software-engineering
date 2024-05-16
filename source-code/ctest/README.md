@@ -1,9 +1,9 @@
-# Testing
+# CTest
 
-Simple project that enables testing.
+CTest is part of the CMake ecosystem that let's you integrate testing
+into the build process.
+
 
 ## What is it?
 
-1. `fac.cpp`: simple C++ application to compute the
-   factorial of a number given on the command line.
-1. `CMakeLists.txt`: CMake file that enables testing.
+1. `functional-testing`: example of simple functional testing.
