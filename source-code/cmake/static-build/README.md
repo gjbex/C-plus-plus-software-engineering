@@ -11,4 +11,3 @@ using the static version of the external library.
      data from standard input, and writes statistics to standard output.
     1. `CMakeLists.txt`: CMake file to build and install the application.
 1. `CMakeLists.txt`: CMake file to build and install the project.
-1. `build.sh`: bash script to build the project.
