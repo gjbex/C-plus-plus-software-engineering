@@ -8,6 +8,7 @@ CMake is an excellent cross-platform build system generator.
 1. `libary`: CMake example of how to install a library and its headers.
 1. `external-library`: simple example of building an application that uses GSL,
    a third-party library (GNU GSL).
+1. `boost`: simple example of building an application that uses Boost.
 1. `blas-lapack`: simple example of building an application that uses BLAS and
    LAPACK.
 1. `mixed-code-and-scripts-install`: example of how to install a mix of code
