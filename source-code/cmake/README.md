@@ -4,6 +4,7 @@ CMake is an excellent cross-platform build system generator.
 
 ## What is it?
 
+!. `simple`: trivial example of a CMake project.
 1. `libary`: CMake example of how to install a library and its headers.
 1. `external-library`: simple example of building an application that uses GSL,
    a third-party library (GNU GSL).
