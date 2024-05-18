@@ -1,12 +1,12 @@
-cmake_minimum_required(VERSION 3.0)
-project(args_test LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.22)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
-set(CMAKE_CXX_EXTENSIONS NO)
+project(blaze_test LANGUAGES CXX)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(generate_gaussian.exe generate_gaussian.cpp)
-target_link_libraries(generate_gaussian.exe ${CONAN_LIBS})
+find_package(blaze REQUIRED)
+
+add_executable(blaze_test.exe blaze_test.cpp)
+target_link_libraries(blaze_test.exe PRIVATE blaze::blaze)
