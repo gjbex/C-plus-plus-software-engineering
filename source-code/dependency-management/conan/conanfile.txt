@@ -1,5 +1,6 @@
 [requires]
-args/6.2.2@pavel-belikov/stable
+blaze/3.8.2@
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain
