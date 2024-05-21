@@ -1,7 +1,9 @@
 # Circles
+
 Illustration of a factory class.
 
 ## What is it?
+
 1. `circle.h`: circle class declaration.
 1. `circle.cpp`: circle class definition.
 1. `circle_factory.h`: class declaration of a circle factory.
@@ -16,9 +18,10 @@ Illustration of a factory class.
     circles that overlap another as a function of the number of circles.
 1. `plot_overlap_data.plt`: gnuplot script to plot the overlap data to the
     screen.
-1. `Makefile`: make file to build the applications.
+1. `CMakeLists.txt`: CMake file to build the applications.
 
 ## How to use?
+
 Use `make` to generate the overlap plot, i.e.,
 ```bash
 $ make plot
