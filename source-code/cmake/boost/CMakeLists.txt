@@ -13,9 +13,9 @@ if (NOT Boost_FOUND)
 endif (NOT Boost_FOUND)
 
 add_executable(random.exe random.cpp)
-target_include_directories(random.exe PRIVATE ${Boost_INCLUDE_DIR})
-target_link_libraries(random.exe LINK_PRIVATE ${Boost_LIBRARIES})
+target_include_directories(random.exe PRIVATE Boost::program_options)
+target_link_libraries(random.exe PRIVATE Boost::program_options)
 
 add_executable(random_default.exe random_default.cpp)
-target_include_directories(random_default.exe PRIVATE ${Boost_INCLUDE_DIR})
-target_link_libraries(random_default.exe LINK_PRIVATE ${Boost_LIBRARIES})
+target_include_directories(random_default.exe PRIVATE Boost::program_options)
+target_link_libraries(random_default.exe PRIVATE Boost::program_options)
