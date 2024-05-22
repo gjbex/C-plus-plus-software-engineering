@@ -14,3 +14,4 @@ find_package(MKL CONFIG REQUIRED PATHS $ENV{MKLROOT})
 
 add_executable(sgemm.exe sgemm.cpp)
 target_link_libraries(sgemm.exe PUBLIC MKL::MKL)
+target_include_directories(sgemm.exe PRIVATE MKL::MKL)

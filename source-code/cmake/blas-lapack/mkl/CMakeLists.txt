@@ -10,7 +10,7 @@ add_compile_options(-Wall -Wextra)
 
 set(BLA_VENDOR Intel10_64lp)
 find_package(BLAS REQUIRED)
-find_package(LAPACK REQUIRED)
 
 add_executable(sgemm.exe sgemm.cpp)
 target_link_libraries(sgemm.exe PUBLIC BLAS::BLAS)
+target_include_directories(sgemm.exe PRIVATE BLAS::BLAS)

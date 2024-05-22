@@ -14,3 +14,4 @@ find_package(LAPACK REQUIRED)
 
 add_executable(sgemm.exe sgemm.cpp)
 target_link_libraries(sgemm.exe PUBLIC BLAS::BLAS)
+target_include_directories(sgemm.exe PRIVATE BLAS::BLAS)
