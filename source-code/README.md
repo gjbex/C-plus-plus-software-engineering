@@ -14,3 +14,4 @@ Source code for a training on software development with C++.
 1. `doxygen`: illustration of how to generate documentation with doxygen.
 1. `design-patterns`: illustration of the implementation of a few design
    patterns.
+1. `solid`: illustration of the SOLID principles.
