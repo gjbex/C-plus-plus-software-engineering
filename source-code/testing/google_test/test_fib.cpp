@@ -1,5 +1,11 @@
 #include "fib.h"
+#include <stdexcept>
 #include <gtest/gtest.h>
+
+TEST(FibTest, NegativeInput) {
+  EXPECT_THROW(fib(-1), std::invalid_argument);
+  EXPECT_THROW(fib(-10), std::invalid_argument);
+}
 
 TEST(FibTest, BaseCases) {
   EXPECT_EQ(fib(0), 1);
