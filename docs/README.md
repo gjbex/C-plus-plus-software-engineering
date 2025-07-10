@@ -64,6 +64,13 @@ This is *not* a training that teaches you how to program in C++.
 You also need to be familiar with the Bash command line.
 
 
+## Level
+
+* Introductory: 20 %
+* Intermediate: 40 %
+* Advanced: 40 %
+
+
 ## Trainer(s)
 
   * Geert Jan Bex ([geertjan.bex@uhasselt.be](mailto:geertjan.bex@uhasselt.be))
