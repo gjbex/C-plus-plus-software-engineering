@@ -11,8 +11,8 @@ class CycleFinder: public GenerationHandler {
         Generations generations;
         size_t cycle_length_ {0};
     public:
-        bool handle(const Automaton& automaton) override;
-        size_t cycle_length() const { return cycle_length_; }
+        [[nodiscard]] bool handle(const Automaton& automaton) override;
+        [[nodiscard]] size_t cycle_length() const { return cycle_length_; }
         ~CycleFinder() override = default;
 };
 

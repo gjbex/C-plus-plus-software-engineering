@@ -17,7 +17,7 @@ Automaton init_automaton(const size_t nr_cells, const size_t seed) {
 
 class PrintHandler: public GenerationHandler {
     public:
-        bool handle(const Automaton& automaton) override {
+        [[nodiscard]] bool handle(const Automaton& automaton) override {
             for (const auto& value: automaton) {
                 if (value == 0) {
                     std::cout << ' ';
@@ -32,7 +32,7 @@ class PrintHandler: public GenerationHandler {
 
 class DoNothingHandler: public GenerationHandler {
     public:
-        bool handle([[maybe_unused]] const Automaton& automaton) override {
+        [[nodiscard]] bool handle([[maybe_unused]] const Automaton& automaton) override {
             return true;
         }
 };
