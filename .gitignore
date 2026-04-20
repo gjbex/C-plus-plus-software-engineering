@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+.depend
 
 # Compiled Object files
 *.slo
@@ -31,3 +32,4 @@
 *.out
 *.app
 /~$cpp_software_engineering.pptx
+_codeql_detected_source_root

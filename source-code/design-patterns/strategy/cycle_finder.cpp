@@ -1,7 +1,5 @@
 #include "cycle_finder.h"
 
-#include <iostream>
-
 bool CycleFinder::handle(const Automaton& automaton) {
     auto is_automaton_present = [&automaton] (const Automaton& vec_element) {
         return std::equal(std::begin(vec_element), std::end(vec_element),
