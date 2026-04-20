@@ -20,10 +20,11 @@ std::ostream& operator<<(std::ostream& out, const Circle& circle) {
 
 std::istream& operator>>(std::istream& in, Circle& circle) {
     double x, y, radius;
-    in >> x >> y >> radius;
-    circle._x = x;
-    circle._y = y;
-    circle._radius = radius;
+    if (in >> x >> y >> radius) {
+        circle._x = x;
+        circle._y = y;
+        circle._radius = radius;
+    }
     return in;
 }
 
@@ -33,8 +34,9 @@ std::vector<Circle> Circle::read_circles() {
     while (std::getline(std::cin, line)) {
         std::istringstream in(line);
         Circle circle;
-        in >> circle;
-        circles.push_back(circle);
+        if (in >> circle) {
+            circles.push_back(circle);
+        }
     }
     return circles;
 }

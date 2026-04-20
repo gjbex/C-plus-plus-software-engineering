@@ -2,7 +2,7 @@
 
 #include "circle_factory.h"
 
-CircleFactory::CircleFactory(const double radius, const int seed) {
+CircleFactory::CircleFactory(const double radius, const Seed_t seed) {
     _radius = radius;
     double lower {_min + radius};
     double upper {_max - radius};

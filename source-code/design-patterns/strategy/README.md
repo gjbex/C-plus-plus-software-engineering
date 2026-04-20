@@ -1,7 +1,8 @@
 # Strategy pattern
 
-The strategy pattern allows to inject functionality at runtime into
+The strategy pattern allows injecting functionality at runtime into
 objects or functions/method calls.
+
 
 ## What is it?
 
@@ -10,7 +11,8 @@ objects or functions/method calls.
 1. `automaton_runner.cpp`: implementation of the `AutomatonRunner`
    class.
 1. `cycle_finder.h`: class that implements a non-trivial strategy.
-1. `cycle_finder.cpp`: implmentation of the `CycleFinder` class
+1. `cycle_finder.cpp`: implementation of the `CycleFinder` class
    methods.
 1. `main.cpp`: application to run cellular automata.
-1. `Makefile`: make file to build the applications.
+1. `CMakeLists.txt`: CMake configuration that fetches `CLI11` and
+   builds the application.

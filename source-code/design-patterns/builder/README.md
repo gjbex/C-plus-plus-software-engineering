@@ -8,4 +8,13 @@ Illustration of the builder desing pattern.
     using method chaining.
 1. `rng_builder.cpp`: class implementation of a builder for `Rng` objects.
 1. `rng_runner.cpp`: main function to demo the builder.
-1. `Makefile`: make file to build the application.
+1. `CMakeLists.txt`: CMake configuration to build the application.
+
+## Build
+
+Use CMake directly:
+
+```sh
+cmake -S . -B build
+cmake --build build
+```
