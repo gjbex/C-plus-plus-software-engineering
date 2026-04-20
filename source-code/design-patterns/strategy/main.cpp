@@ -42,7 +42,7 @@ class DoNothingHandler: public GenerationHandler {
 
 struct Options {
     size_t nr_cells;
-    uint8_t rule_nr;
+    unsigned int rule_nr;
     size_t nr_generations;
     size_t seed;
     std::string handler_name;
@@ -55,7 +55,8 @@ Options get_options(int argc, char *argv[]) {
     app.add_option("--nr_cells", options.nr_cells,
                    "Number of cells in the automaton");
     app.add_option("--rule_nr", options.rule_nr,
-                   "Elementary cellular automaton rule number");
+                   "Elementary cellular automaton rule number")
+        ->check(CLI::Range(0U, 255U));
     app.add_option("--nr_generations", options.nr_generations,
                    "Number of generations to evolve");
     app.add_option("--seed", options.seed,
@@ -90,7 +91,7 @@ int main(int argc, char *argv[]) {
     Options options {get_options(argc, argv)};
     auto handler = make_handler(options.handler_name);
     Automaton automaton = init_automaton(options.nr_cells, options.seed);
-    AutomatonRunner runner(options.rule_nr);
+    AutomatonRunner runner(static_cast<uint8_t>(options.rule_nr));
     runner.evolve(automaton, options.nr_generations, handler.get());
     if (CycleFinder* gen_handler = dynamic_cast<CycleFinder*>(handler.get());
             gen_handler != nullptr) {
