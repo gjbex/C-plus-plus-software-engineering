@@ -1,6 +1,6 @@
 # Strategy pattern
 
-The strategy pattern allows to inject functionality at runtime into
+The strategy pattern allows injecting functionality at runtime into
 objects or functions/method calls.
 
 
