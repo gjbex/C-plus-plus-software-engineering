@@ -8,7 +8,9 @@
 #include "automaton_runner.h"
 #include "cycle_finder.h"
 
-Automaton init_automaton(const size_t nr_cells, const size_t seed) {
+using Seed_t = std::mt19937_64::result_type;
+
+Automaton init_automaton(const size_t nr_cells, const Seed_t seed) {
     Automaton automaton(nr_cells);
     std::mt19937_64 engine(seed);
     std::uniform_int_distribution<uint8_t> distr(0, 1);
@@ -44,21 +46,53 @@ struct Options {
     size_t nr_cells;
     unsigned int rule_nr;
     size_t nr_generations;
-    size_t seed;
+    Seed_t seed;
     std::string handler_name;
 };
 
 Options get_options(int argc, char *argv[]) {
     Options options {10, 47, 20, 1234, "visualize"};
+    auto at_least_two = CLI::Validator(
+        [](std::string& input) {
+            size_t value;
+            try {
+                value = std::stoull(input);
+            } catch (...) {
+                return std::string("value must be an unsigned integer");
+            }
+            if (value < 2) {
+                return std::string("value must be at least 2");
+            }
+            return std::string{};
+        },
+        "at least 2"
+    );
+    auto positive_count = CLI::Validator(
+        [](std::string& input) {
+            size_t value;
+            try {
+                value = std::stoull(input);
+            } catch (...) {
+                return std::string("value must be an unsigned integer");
+            }
+            if (value == 0) {
+                return std::string("value must be positive");
+            }
+            return std::string{};
+        },
+        "positive"
+    );
 
     CLI::App app {"Run a one-dimensional cellular automaton"};
     app.add_option("--nr_cells", options.nr_cells,
-                   "Number of cells in the automaton");
+                   "Number of cells in the automaton")
+        ->check(at_least_two);
     app.add_option("--rule_nr", options.rule_nr,
                    "Elementary cellular automaton rule number")
         ->check(CLI::Range(0U, 255U));
     app.add_option("--nr_generations", options.nr_generations,
-                   "Number of generations to evolve");
+                   "Number of generations to evolve")
+        ->check(positive_count);
     app.add_option("--seed", options.seed,
                    "Seed used to initialize the automaton");
     app.add_option("--handler", options.handler_name,
@@ -67,9 +101,6 @@ Options get_options(int argc, char *argv[]) {
 
     try {
         app.parse(argc, argv);
-        if (options.nr_cells < 2) {
-            throw CLI::ValidationError("--nr_cells", "must be at least 2");
-        }
     } catch (const CLI::ParseError& e) {
         std::exit(app.exit(e));
     }
