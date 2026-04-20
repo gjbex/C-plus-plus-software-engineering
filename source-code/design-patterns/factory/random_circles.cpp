@@ -12,11 +12,30 @@ struct Options {
 
 Options get_options(int argc, char *argv[]) {
     Options options;
+    auto radius_validator = CLI::Validator(
+        [](std::string& input) {
+            double radius;
+            try {
+                radius = std::stod(input);
+            } catch (...) {
+                return std::string("value must be a floating-point number");
+            }
+            if (radius <= 0.0 || radius >= 0.5) {
+                return std::string("value must satisfy 0 < radius < 0.5");
+            }
+            return std::string{};
+        },
+        ""
+    ).description("in (0, 0.5)");
+
     CLI::App app {"Generate random circles"};
     app.add_option("--nr_circles", options.nr_circles,
-                   "Number of circles to generate");
+                   "Number of circles to generate"
+               )->check(CLI::PositiveNumber);
     app.add_option("--radius", options.radius,
-                   "Radius of each generated circle");
+                   "Radius of each generated circle"
+               )->type_name("FLOAT")
+                ->check(radius_validator);
     app.add_option("--seed", options.seed,
                    "Random seed used for generation");
 
