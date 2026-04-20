@@ -6,6 +6,8 @@
 
 #include "circle.h"
 
+using Seed_t = std::mt19937_64::result_type;
+
 class CircleFactory {
     private:
         double _min {0.0};
@@ -15,7 +17,7 @@ class CircleFactory {
         std::uniform_real_distribution<double> _distr;
         std::function<double()> _random;
     public:
-        CircleFactory(const double radius, const int seed);
+        CircleFactory(const double radius, const Seed_t seed);
         Circle create() const;
 };
 

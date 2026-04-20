@@ -22,7 +22,12 @@ Illustration of a factory class.
 
 ## How to use?
 
-Use `make` to generate the overlap plot, i.e.,
-```bash
-$ make plot
+Build the C++ applications with CMake:
+
+```sh
+cmake -S . -B build
+cmake --build build
 ```
+
+`random_circles.exe` now supports `--help`, `--nr_circles`, `--radius`,
+and `--seed`.
