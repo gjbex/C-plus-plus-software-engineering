@@ -82,6 +82,10 @@ Options get_options(int argc, char *argv[]) {
 
 int main(int argc, char *argv[]) {
     Options options {get_options(argc, argv)};
+    if (options.nr_cells < 2) {
+        std::cerr << "# error: nr_cells must be at least 2\n";
+        return 1;
+    }
     Automaton automaton = init_automaton(options.nr_cells, options.seed);
     AutomatonRunner runner(options.rule_nr);
     runner.evolve(automaton, options.nr_generations, options.handler.get());

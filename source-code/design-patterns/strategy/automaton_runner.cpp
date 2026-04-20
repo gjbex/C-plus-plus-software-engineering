@@ -1,5 +1,7 @@
 #include "automaton_runner.h"
 
+#include <stdexcept>
+
 AutomatonRunner::AutomatonRunner(uint8_t rule_nr) {
     for (uint8_t i = 0; i < rules.size(); ++i) {
         rules[i] = rule_nr % 2;
@@ -8,8 +10,8 @@ AutomatonRunner::AutomatonRunner(uint8_t rule_nr) {
 }
 
 Automaton AutomatonRunner::next_generation(const Automaton& automaton) {
-    uint8_t idx;
     size_t nr_cells {automaton.size()};
+    uint8_t idx;
     Automaton ng_automaton(nr_cells);
     // first cell
     idx = automaton[nr_cells - 1] << 2 | automaton[0] << 1 | automaton[1];
@@ -27,6 +29,9 @@ Automaton AutomatonRunner::next_generation(const Automaton& automaton) {
 
 void AutomatonRunner::evolve(Automaton& automaton, const size_t nr_generations,
                              GenerationHandler* handler) {
+    if (automaton.size() < 2) {
+        throw std::invalid_argument("automaton must have at least 2 cells");
+    }
     if (!handler->handle(automaton)) return;
     for (size_t gen_nr = 0; gen_nr < nr_generations; ++gen_nr) {
         automaton  = next_generation(automaton);
