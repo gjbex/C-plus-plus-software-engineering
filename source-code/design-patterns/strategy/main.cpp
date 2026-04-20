@@ -1,7 +1,10 @@
 #include <iostream>
 #include <memory>
 #include <random>
-#include <tuple>
+#include <string>
+
+#include "CLI/CLI.hpp"
+
 #include "automaton_runner.h"
 #include "cycle_finder.h"
 
@@ -42,54 +45,54 @@ struct Options {
     uint8_t rule_nr;
     size_t nr_generations;
     size_t seed;
-    std::unique_ptr<GenerationHandler> handler;
+    std::string handler_name;
 };
 
 Options get_options(int argc, char *argv[]) {
-    Options options {10, 47, 20, 1234,
-        std::make_unique<PrintHandler>()};
-    int i {1};
-    while (i < argc) {
-        std::string opt {argv[i]};
-        if (opt == "--nr_cells") {
-            options.nr_cells = std::stoul(argv[i + 1]);
-        } else if (opt == "--rule_nr") {
-            options.rule_nr = static_cast<uint8_t>(std::stoi(argv[i + 1]));
-        } else if (opt == "--nr_generations") {
-            options.nr_generations = std::stoul(argv[i + 1]);
-        } else if (opt == "--seed") {
-            options.seed = std::stoul(argv[i + 1]);
-        } else if (opt == "--handler") {
-            std::string handler_str {argv[i + 1]};
-            if (handler_str == "nothing") {
-                options.handler = std::make_unique<DoNothingHandler>();
-            } else if (handler_str == "visualize") {
-                options.handler = std::make_unique<PrintHandler>();
-            } else if (handler_str == "cycles") {
-                options.handler = std::make_unique<CycleFinder>();
-            } else {
-                std::cerr << "# error: unknown handler type " << handler_str << "\n";
-                std::exit(2);
-            }
-        } else {
-            std::cerr << "# error: unexpected argument " << opt << "\n";
-            std::exit(1);
+    Options options {10, 47, 20, 1234, "visualize"};
+
+    CLI::App app {"Run a one-dimensional cellular automaton"};
+    app.add_option("--nr_cells", options.nr_cells,
+                   "Number of cells in the automaton");
+    app.add_option("--rule_nr", options.rule_nr,
+                   "Elementary cellular automaton rule number");
+    app.add_option("--nr_generations", options.nr_generations,
+                   "Number of generations to evolve");
+    app.add_option("--seed", options.seed,
+                   "Seed used to initialize the automaton");
+    app.add_option("--handler", options.handler_name,
+                   "Generation handler")
+        ->check(CLI::IsMember({"visualize", "nothing", "cycles"}));
+
+    try {
+        app.parse(argc, argv);
+        if (options.nr_cells < 2) {
+            throw CLI::ValidationError("--nr_cells", "must be at least 2");
         }
-        i += 2;
+    } catch (const CLI::ParseError& e) {
+        std::exit(app.exit(e));
     }
+
     return options;
+}
+
+std::unique_ptr<GenerationHandler> make_handler(const std::string& handler_name) {
+    if (handler_name == "nothing") {
+        return std::make_unique<DoNothingHandler>();
+    }
+    if (handler_name == "cycles") {
+        return std::make_unique<CycleFinder>();
+    }
+    return std::make_unique<PrintHandler>();
 }
 
 int main(int argc, char *argv[]) {
     Options options {get_options(argc, argv)};
-    if (options.nr_cells < 2) {
-        std::cerr << "# error: nr_cells must be at least 2\n";
-        return 1;
-    }
+    auto handler = make_handler(options.handler_name);
     Automaton automaton = init_automaton(options.nr_cells, options.seed);
     AutomatonRunner runner(options.rule_nr);
-    runner.evolve(automaton, options.nr_generations, options.handler.get());
-    if (CycleFinder* gen_handler = dynamic_cast<CycleFinder*>(options.handler.get());
+    runner.evolve(automaton, options.nr_generations, handler.get());
+    if (CycleFinder* gen_handler = dynamic_cast<CycleFinder*>(handler.get());
             gen_handler != nullptr) {
         std::cout << gen_handler->cycle_length() << "\n";
     }
