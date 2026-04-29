@@ -100,6 +100,11 @@ If several of these items still feel difficult, the training will probably move
 too fast. In that case, it is better to first take a short introductory C++
 course or refresh the basics.
 
+### Software and access requirements
+
+To follow hands-on, you need a computer with a C++ development environment
+installed. You can of course use an HPC system you have access to as well.
+
 
 ## Level of the Material
 
