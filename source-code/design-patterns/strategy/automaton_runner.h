@@ -11,8 +11,8 @@ using Automaton = std::valarray<uint8_t>;
 
 class GenerationHandler {
     public:
-        virtual bool handle([[maybe_unused]] const Automaton& automatron) { return true; }
-        virtual ~GenerationHandler() {};
+        [[nodiscard]] virtual bool handle([[maybe_unused]] const Automaton& automaton) { return true; }
+        virtual ~GenerationHandler() = default;
 };
 
 class AutomatonRunner {
