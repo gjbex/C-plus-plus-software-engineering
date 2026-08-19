@@ -1,0 +1,179 @@
+schema_version = 2
+id = "c-plus-plus-software-engineering"
+title = "C++ software engineering"
+content_language = "en"
+summary = """
+C++ is widely used in many contexts. This training focusses on software engineering aspects of C++ such as building software, linting, testing libraries and applications, and so on. Also, best practices are discussed such as design patterns.
+"""
+languages = ["C++"]
+
+[[learning_outcomes]]
+statement = "Assess code quality."
+competencies = ["software-engineering.assess-code-quality"]
+
+[[learning_outcomes]]
+statement = "Build software using CMake."
+competencies = ["software-engineering.build-with-cmake"]
+
+[[learning_outcomes]]
+statement = "Perform static code analysis and interpret the results."
+competencies = ["software-engineering.run-static-analysis"]
+
+[[learning_outcomes]]
+statement = "Write unit tests using Catch2."
+competencies = ["testing.write-unit-tests"]
+
+[[learning_outcomes]]
+statement = "Write functional tests using CTest."
+competencies = ["testing.write-functional-tests"]
+
+[[learning_outcomes]]
+statement = "Use C++ package managers such as Conan or vcpkg."
+competencies = ["software-engineering.manage-cpp-dependencies"]
+
+[[learning_outcomes]]
+statement = "Apply a number of design patterns that are useful in scientific programming."
+competencies = ["software-engineering.apply-design-patterns"]
+
+[[learning_outcomes]]
+statement = "Use STL algorithms and ranges more effectively in an idiomatic style."
+competencies = ["cpp.use-algorithms-and-ranges"]
+
+[source]
+metadata_document = "docs/README.md"
+repository_url = "https://github.com/gjbex/C-plus-plus-software-engineering/"
+website_url = "https://gjbex.github.io/C-plus-plus-software-engineering/"
+license = "CC-BY-4.0"
+
+[delivery]
+duration_minutes = 240
+duration_kind = "fixed"
+session_count = 1
+target_session_duration_minutes = 240
+schedule_complete = true
+description = """
+Total duration: 4 hours
+"""
+
+[audience]
+description = """
+This training is for you if you already use C++ and want to develop production-quality software more effectively.
+"""
+
+[prerequisites]
+summary = """
+You will need experience programming in C++. This is *not* a training that teaches you how to program in C++ from scratch. You also need to be familiar with the Bash command line. More concretely, participants should already be comfortable with the following: * writing and reading small to medium C++ programs; * variables, expressions, control flow, functions, and separate compilation; * header and source files, `#include`, and basic project structure; * references, `const` correctness, and basic value semantics; * classes, constructors, member functions, inheritance, and virtual functions; * exceptions and basic error handling; * standard-library facilities such as `std::string`, `std::vector`, streams, and a few common containers or algorithms; * reading compiler diagnostics and making small fixes to existing code; * compiling and running programs from the command line at a basic level. You do not need prior experience with CMake, Catch2, CTest, clang-tidy, cppcheck, Conan, vcpkg, or design patterns. Those are part of the training itself.
+"""
+competencies = ["cpp.read-and-write-idiomatic-programs", "cpp.separate-compilation", "cpp.references-and-const", "cpp.basic-classes", "cpp.inheritance-and-virtual-functions", "cpp.exceptions", "cpp.standard-library-containers-and-algorithms", "diagnostics.locate-problem", "command-line.run-or-compile-programs"]
+
+[self_assessment]
+introduction = """
+If you can do most of the tasks below without looking up basic C++ syntax, you are likely ready for this training.
+"""
+tasks = [
+  "Define a simple class with a constructor and one or two member functions.",
+  "Split a small program into a header file and a source file.",
+  "Store values in a `std::vector` and loop over them.",
+  "Throw and catch a standard exception such as `std::invalid_argument`.",
+  "Read a short C++ program that uses references, `const`, and a few STL types.",
+  "Compile and run a small C++ program from the command line.",
+  "Make a small change to an existing C++ source file and rebuild it.",
+  "Read a compiler error or test failure and identify roughly where the problem occurred."
+]
+
+[level]
+introductory_percent = 15
+intermediate_percent = 45
+advanced_percent = 40
+description = """
+For participants who already have basic to intermediate C++ programming experience, the material in this training is approximately These percentages describe the level of the software engineering topics covered in the training, not the required entry level in C++ itself.
+"""
+
+[[materials]]
+kind = "slides"
+path = "cpp_software_engineering.pptx"
+
+[[materials]]
+kind = "source-code"
+path = "source-code"
+
+[[trainers]]
+name = "Geert Jan Bex"
+email = "geertjan.bex@uhasselt.be"
+
+[[maintainers]]
+name = "Geert Jan Bex"
+email = "geertjan.bex@uhasselt.be"
+
+[[sessions]]
+id = "session-1"
+title = "Session one"
+duration_minutes = 240
+
+[[sessions.items]]
+subject = "introduction and motivation"
+duration_minutes = 5
+
+[[sessions.items]]
+subject = "coding best practices"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "exception handling"
+duration_minutes = 10
+
+[[sessions.items]]
+subject = "basic usage of CMake"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "linking to libraries using CMake"
+duration_minutes = 10
+
+[[sessions.items]]
+subject = "building OpenMP and MPI applications using CMake"
+duration_minutes = 5
+
+[[sessions.items]]
+subject = "hands-on session"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "coffee break"
+duration_minutes = 10
+
+[[sessions.items]]
+subject = "static code analysis using Clang-tidy/cppcheck"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "writing unit tests with Catch2"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "behavior-driven development with Catch2"
+duration_minutes = 10
+
+[[sessions.items]]
+subject = "hands-on session"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "package management with Conan/vcpkg"
+duration_minutes = 10
+
+[[sessions.items]]
+subject = "design pattern examples"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "functional programming using ranges"
+duration_minutes = 15
+
+[[sessions.items]]
+subject = "hands-on session"
+duration_minutes = 20
+
+[[sessions.items]]
+subject = "wrap up"
+duration_minutes = 5
